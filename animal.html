@@ -9,6 +9,33 @@
     <header>
         <h1>Animal Game by Dinesh Bali</h1>
     </header>
+    <form>
+        <label for="hidden_animal">The hidden animal type</label>
+        <input type="password" id="hidden_animal" value="Chicken">
 
+        <label for="guess_animal">Guess the animal</label>
+        <input type="text" id="guess_animal">
+
+        <button type="button" onclick="checkAnimal()">Check the guess</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        let correct = 0;
+        let wrong = 0;
+        function checkAnimal() {
+            const hiddenAnimalValue = document.getElementById("hidden_animal").value;
+            const guessAnimalValue = document.getElementById("guess_animal").value;
+            if (hiddenAnimalValue === guessAnimalValue) {
+                correct++;
+                alert("Ruff ruff");
+            } else {
+                wrong++;
+                alert("Grrrr");
+            }
+            document.getElementById("result").innerHTML = `Correct: ${correct}, Wrong: ${wrong}`;
+        }
+    </script>
 </body>
 </html>
