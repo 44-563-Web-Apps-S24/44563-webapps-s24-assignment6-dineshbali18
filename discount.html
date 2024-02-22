@@ -23,7 +23,19 @@
 <input type="number" name="reductions" id="reductions" value="5"><br>
 <input type="button" class="btn btn-primary" onclick="discount()" value="Show total"><br>
 <p id="result">Results</p>
-
+<form>
+    <label>
+    <input type="radio"  name="operation" value="sum" onClick="chooseOp()"> sum
+    </label><br>
+    <label>
+    <input type="radio"  name="operation" value="mult" onClick="chooseOp()"> mult
+    </label><br>
+    <label>
+    <input type="radio"  name="operation" value="exp" onClick="chooseOp()"> exp
+    </label><br>
+    </form>
+    
+<p id="res">Result</p>
 
 <script> 
 
@@ -47,7 +59,40 @@ function discount()
     document.getElementById("result").innerHTML = "Total are: "+myOutput;   
 }
 
-
+function chooseOp()
+{
+    
+            var price = parseFloat(document.getElementById("price").value);
+            var number = document.getElementById("items").value
+            var discount = parseFloat(document.getElementById("reductions").value);
+            var operation = document.querySelector('input[name="operation"]:checked').value;
+            var result;
+            var operationSymbol;
+ 
+            switch (operation) {
+                case "sum":
+                    result = price + discount;
+                    operationSymbol = "+";
+                    break;
+                case "mult":
+                    result = price * discount;
+                    operationSymbol = "*";
+                    break;
+                case "exp":
+                    result = price ** discount;
+                    operationSymbol = "**";
+                    break;
+                default:
+                    result = "Invalid operation";
+                    operationSymbol = "";
+                    break;
+            }
+ 
+            var outputMessage = ` ${operation} of ${price} and ${discount} is  ${result}`;
+            document.getElementById("res").textContent = "Result: " + result;
+            document.getElementById("res").textContent = outputMessage;
+        }
+    
 </script>
 
 </body>
